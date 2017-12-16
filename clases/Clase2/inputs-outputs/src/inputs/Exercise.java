@@ -19,7 +19,7 @@ public class Exercise {
 		d4 = (value / 10) % 10;
 		d3 = (value / 100) % 10;
 		d2 = (value / 1000) % 10;
-		d1 = (value / 10000) % 10;			
+		d1 = (value / 10000) % 10;		
 		
 		System.out.printf("%d\t %d\t %d\t %d\t %d\t ", d1, d2, d3, d4, d5);
 		
