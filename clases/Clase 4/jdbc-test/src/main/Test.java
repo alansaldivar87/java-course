@@ -6,12 +6,19 @@ public class Test {
 		
 		Person person = new Person();
 		
-		person.setName("Hello there bro");
+		person.setName("Fulano");
 		
-		PersonDaoImpl personDao = new PersonDaoImpl();
+		PersonDaoImpl personDAO = new PersonDaoImpl();
 		
-		personDao.getConnection();
-		personDao.insert(person);
+		personDAO.getConnection();
+		
+		List<Person> persons = personDAO.select();
+		
+		for (Person p : persons) {
+			System.out.println(p.getName());
+		}}
+		
+		// personDao.insert(person);
 		personDao.closeConnection();
 		
 	}
