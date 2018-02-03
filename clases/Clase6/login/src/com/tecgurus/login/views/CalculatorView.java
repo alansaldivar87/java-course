@@ -1,4 +1,4 @@
-package main.calculator;
+package com.tecgurus.login.views;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -13,7 +13,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class Calculator extends JFrame{
+import com.tecgurus.login.dao.CalculatorDAO;
+import com.tecgurus.login.daoImpl.CalculatorDaoImpl;
+import com.tecgurus.login.model.Calculator;
+import com.tecgurus.login.util.UtilFunctions;
+
+public class CalculatorView extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -25,7 +30,7 @@ public class Calculator extends JFrame{
 	private static final int WINDOW_WIDTH = 400;
 	private static final int WINDOW_HEIGHT = 350;
 	
-	public Calculator() {
+	public CalculatorView() {
 		super("Calculator");
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -142,6 +147,9 @@ public class Calculator extends JFrame{
 	}
 	
 	public ActionListener result() {
+		
+		Calculator calculator = new Calculator();
+		
 		return new ActionListener() {
 			
 			@Override
@@ -163,10 +171,18 @@ public class Calculator extends JFrame{
 						break;			
 					}
 					
+					calculator.setNum1(num1);
+					calculator.setNum2(num2);
+					calculator.setOperation(operation);
+					calculator.setResult(resultValue);
+					
+					CalculatorDAO calculatorDAO = new CalculatorDaoImpl();
+					calculatorDAO.insert(calculator);
+					
 					screen.setText("");
 					screen.setText(String.valueOf(resultValue));
 				} catch (NumberFormatException| NullPointerException ex) {
-					System.out.println("ERROR");
+					screen.setText("ERROR");
 				}				
 			}
 		};
